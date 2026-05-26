@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FONTDALE | Curated Lifestyle Destination</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #262626;
+            --accent-color: #A68A64;
+            --bg-color: #F9F9F9;
+            --bg-alt: #FFFFFF;
+            --text-light: #6B6B6B;
+            --border-color: #E5E5E5;
+            --error: #D9534F;
+            --success: #5CB85C;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease; 
+            
+            --footer-bg: #1e1e1d;
+            --footer-text: #c2c2c2;
+            --footer-heading: #eaeaea;
+            --footer-border: #3a3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            color: var(--primary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        header {
+            background-color: transparent;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: background-color 0.5s ease, backdrop-filter 0.5s ease, border-bottom 0.5s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+            padding: 4px 0;
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(-50%);
+        }
+
+        .nav-links li a:hover::after, .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--primary-color);
+            background-color: transparent;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .page-section {
+            display: none;
+            min-height: 80vh;
+            animation: fadeUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--primary-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-alt);
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 3rem;
+            padding-top: 5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('assets/Sza\ Sos\ Album\ Re\ Pitchfork.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(249,249,249,0.95) 0%, rgba(249,249,249,0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p.tagline {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            color: var(--text-light);
+        }
+
+        .hero-info {
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5% 6rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .card {
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .card-img-wrapper {
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .card-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .event-date {
+            display: block;
+            font-weight: 500;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 5rem;
+            align-items: flex-start;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+
+        .form-container {
+            max-width: 700px;
+            background: var(--bg-alt);
+            padding: 4rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select {
+            width: 100%;
+            padding: 1rem 0;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            background: transparent;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-bottom-color: var(--primary-color);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 300;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        #form-messages {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            display: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .error-msg { background: #FDEDED; color: var(--error); border-left: 3px solid var(--error); }
+        .success-msg { background: #EDF7ED; color: var(--success); border-left: 3px solid var(--success); }
+
+        .site-footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 5rem 5% 2rem;
+            font-family: var(--font-body);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr; 
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-col h3 {
+            font-family: var(--font-heading);
+            color: var(--footer-heading);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--footer-border);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col p, .footer-col a {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--footer-text);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--bg-alt);
+        }
+
+        .footer-address p {
+            display: inline;
+            border-bottom: 1px dotted var(--footer-text);
+            line-height: 2;
+        }
+        
+        .footer-address-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--footer-text);
+            color: var(--footer-text);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            border-color: var(--bg-alt);
+            color: var(--bg-alt);
+        }
+
+        .social-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .app-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .app-badge-img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+            border: 1px solid var(--footer-border);
+            object-fit: contain;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-bottom a {
+            border-bottom: 1px dotted #888;
+        }
+
+        @media screen and (max-width: 540px) {
+            .nav-container {
+                flex-wrap: wrap;
+                padding: 1.2rem 5%;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: left;
+                padding-top: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li a {
+                display: inline-block; 
+                padding-bottom: 8px;
+            }
+
+            header.menu-open {
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: none;
+            }
+
+            .hero::before {
+                background: linear-gradient(to bottom, rgba(249,249,249,0.9) 0%, rgba(249,249,249,0.6) 100%);
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            
+            .footer-bottom {
+                padding-top: 1rem;
+                border-top: 1px solid var(--footer-border);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <nav class="nav-container">
+            <div class="logo" onclick="navigate('home')">Font<span>Dale</span></div>
+            <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" onclick="navigate('home')" class="nav-link active" data-target="home">Home</a></li>
+                <li><a href="#" onclick="navigate('directory')" class="nav-link" data-target="directory">Directory</a></li>
+                <li><a href="#" onclick="navigate('events')" class="nav-link" data-target="events">Events</a></li>
+                <li><a href="#" onclick="navigate('about')" class="nav-link" data-target="about">About</a></li>
+                <li><a href="#" onclick="navigate('newsletter')" class="nav-link" data-target="newsletter">Newsletter</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Redefining Urban Spaces.</h1>
+                    <p class="tagline">Where premium retail, culinary culture, and the arts community converge at the heart of Arcadia Circle.</p>
+                    <a href="#" onclick="navigate('directory')" class="btn-primary">Explore Tenants</a>
+                    
+                    <div class="hero-info">
+                        <p>Arcadia Circle, Grand Boulevard</p>
+                        <p style="color: var(--text-light); font-weight: 300; margin-top: 5px;">Open Daily: 10:00 AM - 10:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="directory" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Curated Tenants</h2>
+                    <p>Explore a collection of global fashion brands, artisan lifestyle spaces, and curated culinary experiences at North Gallery and South Pavilion.</p>
+                </div>
+                <div class="grid-container">
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/Sza Sos Album Re Pitchfork.jpg" alt="Aura Boutique" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Aura Boutique</h3>
+                            <p>North Gallery — Exclusive global fashion for the dynamic urbanite.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/Sza Sos Album Re Pitchfork.jpg" alt="Bistro Lumen" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Bistro Lumen</h3>
+                            <p>Lumen Skywalk — Artisan coffee and exquisite dining with city skyline views.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/Sza Sos Album Re Pitchfork.jpg" alt="Zenith Studio" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Zenith Studio</h3>
+                            <p>South Pavilion — Curated contemporary furniture and decor for your home.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/Sza Sos Album Re Pitchfork.jpg" alt="Chronos Horology" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <h3>Chronos Horology</h3>
+                            <p>North Gallery — Luxury timepiece collections from legendary watchmakers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Programs & Community</h2>
+                    <p>More than just a shopping destination. Engage in art exhibitions, interactive installations, and community gatherings in our public spaces.</p>
+                </div>
+                <div class="grid-container">
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/SZA Wallpaper Mac.jpeg" alt="Summer Gala" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <span class="event-date">June 15 - 20, 2026</span>
+                            <h3>South Pavilion Symphony</h3>
+                            <p>An elegant evening combining live orchestral performances with exclusive local and international brand exhibitions.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/SZA Wallpaper Mac.jpeg" alt="Skywalk Art Exhibition" class="card-img">
+                        </div>
+                        <div class="card-content">
+                            <span class="event-date">July 05, 2026</span>
+                            <h3>Lumen Art Walk</h3>
+                            <p>Contemporary art installations by talented local artists adorning the iconic Lumen Skywalk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Story</h2>
+                    <p>Delving into the architectural philosophy and vision behind the creation of FONTDALE.</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="assets/SZA Wallpaper Mac.jpeg" alt="FONTDALE Architecture">
+                    </div>
+                    <div class="about-text">
+                        <h3>An Oasis Amidst the City Hustle</h3>
+                        <p>Conceptualized in 2023 and officially opened in 2025, FONTDALE was born from the visionary mind of <strong>Franz Diego</strong>. Operating on the premise that urban society needs more than just a transactional space, FONTDALE was built with an architectural approach that prioritizes natural light, air circulation, and green landscape integration.</p>
+                        <p>Our structure is divided into two main wings. The <strong>North Gallery</strong> is dedicated to the exploration of fashion and dynamic lifestyles, while the <strong>South Pavilion</strong> offers a more relaxed retail and dining experience. Both are harmoniously stitched together by our architectural masterpiece, the <strong>Lumen Skywalk</strong>—a glass suspension bridge offering a new perspective of the city.</p>
+                        <p>Today, FONTDALE at Arcadia Circle is not merely a stopover, but the new heartbeat for a modern community that values aesthetics, quality, and togetherness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsletter" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Join Us</h2>
+                    <p>Get early access to exclusive events, latest art installations, and curated tenant offers.</p>
+                </div>
+                <div class="form-container">
+                    <form id="newsletter-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="emailAddr">Email Address</label>
+                            <input type="email" id="emailAddr" placeholder="name@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input type="tel" id="phoneNumber" placeholder="08123456789">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interestTopic">Topic of Interest</label>
+                            <select id="interestTopic">
+                                <option value="">Select your primary interest...</option>
+                                <option value="fashion">Global Fashion & Apparel</option>
+                                <option value="dining">Culinary & Artisan Cafes</option>
+                                <option value="events">Arts & Community Events</option>
+                                <option value="lifestyle">Lifestyle & Living</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Update Frequency</label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="frequency" value="weekly"> Weekly</label>
+                                <label class="radio-label"><input type="radio" name="frequency" value="monthly"> Monthly</label>
+                                <label class="radio-label"><input type="radio" name="frequency" value="promo"> Special Promos Only</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;">Subscribe Now</button>
+                        
+                        <div id="form-messages"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col footer-address">
+                <h3>Address</h3>
+                <div class="footer-address-wrapper">
+                    <p>Arcadia Circle, Grand Boulevard,</p>
+                    <p>Central Metropolitan District,</p>
+                    <p>FONTDALE Premium Area,</p>
+                    <p>Zip Code 12190</p>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#" onclick="navigate('home')">Home</a></li>
+                    <li><a href="#" onclick="navigate('directory')">Tenant Directory</a></li>
+                    <li><a href="#" onclick="navigate('events')">News & Events</a></li>
+                    <li><a href="#" onclick="navigate('about')">About Us</a></li>
+                    <li><a href="#" onclick="navigate('newsletter')">Newsletter & Inquiries</a></li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a8 8 0 0 1-8-8H7v14a4 4 0 0 1-4-4Z"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="#">North Gallery</a></li>
+                    <li><a href="#">South Pavilion</a></li>
+                    <li><a href="#">Lumen Skywalk</a></li>
+                    <li><a href="#">FONTDALE Art Space</a></li>
+                    <li><a href="#">Arcadia Park</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>FONTDALE PRIVILÈGE</h3>
+                <p style="margin-bottom: 1rem;">Download our loyalty membership app and unlock various exclusive rewards!</p>
+                <div class="app-badges">
+                    <a href="#"><img src="https://placehold.co/120x40/000000/ffffff?text=App+Store" alt="Download on the App Store" class="app-badge-img"></a>
+                    <a href="#"><img src="https://placehold.co/120x40/000000/ffffff?text=Google+Play" alt="Get it on Google Play" class="app-badge-img"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p>
+            <p>Managed by Franz Diego Group – FONTDALE.</p>
+            <p>Copyright © 2026 FONTDALE Premium Lifestyle Mall.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Transisi Header saat Scroll (Glassmorphism)
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Logika Navigasi SPA
+        function navigate(pageId) {
+            const pages = document.querySelectorAll('.page-section');
+            for(let i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            
+            document.getElementById(pageId).classList.add('active');
+
+            const links = document.querySelectorAll('.nav-link');
+            for(let i = 0; i < links.length; i++) {
+                links[i].classList.remove('active');
+                if(links[i].getAttribute('data-target') === pageId) {
+                    links[i].classList.add('active');
+                }
+            }
+
+            const navLinks = document.getElementById('nav-links');
+            const header = document.getElementById('main-header');
+            if(navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+                header.classList.remove('menu-open');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Menu Mobile
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const header = document.getElementById('main-header');
+            navLinks.classList.toggle('show');
+            header.classList.toggle('menu-open');
+        }
+
+        // Validasi Formulir Buletin
+        document.getElementById('newsletter-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('emailAddr').value.trim();
+            const phone = document.getElementById('phoneNumber').value.trim();
+            const topic = document.getElementById('interestTopic').value;
+            const frequencyRadios = document.getElementsByName('frequency');
+            
+            let errors = [];
+
+            if (name === '') { errors.push("Full Name is required."); } 
+            else if (name.length < 3) { errors.push("Full Name must be at least 3 characters."); }
+
+            let atSymbolIndex = email.indexOf('@');
+            let dotIndex = email.lastIndexOf('.');
+            if (email === '') { errors.push("Email Address is required."); } 
+            else if (atSymbolIndex < 1 || dotIndex <= atSymbolIndex + 1 || dotIndex === email.length - 1) { errors.push("Please enter a valid Email Address."); }
+
+            let isPhoneNumeric = true;
+            for (let i = 0; i < phone.length; i++) {
+                if (phone[i] < '0' || phone[i] > '9') {
+                    isPhoneNumeric = false; break;
+                }
+            }
+            
+            if (phone === '') { errors.push("Phone Number is required."); } 
+            else if (!isPhoneNumeric) { errors.push("Phone Number can only contain numbers."); } 
+            else if (phone.length < 8 || phone.length > 15) { errors.push("Phone Number must be between 8 and 15 digits."); }
+
+            if (topic === '') { errors.push("Please select your Topic of Interest."); }
+
+            let isFrequencySelected = false;
+            for (let i = 0; i < frequencyRadios.length; i++) {
+                if (frequencyRadios[i].checked) { isFrequencySelected = true; break; }
+            }
+            
+            if (!isFrequencySelected) { errors.push("Please select your preferred Update Frequency."); }
+
+            const msgBox = document.getElementById('form-messages');
+            msgBox.style.display = 'block';
+
+            if (errors.length > 0) {
+                msgBox.className = 'error-msg';
+                msgBox.innerHTML = "<strong>Please correct the following errors:</strong><br><br>" + errors.join("<br>");
+            } else {
+                msgBox.className = 'success-msg';
+                msgBox.innerHTML = "<strong>Success!</strong> Welcome to the FONTDALE newsletter. Your preferences have been saved.";
+                document.getElementById('newsletter-form').reset(); 
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FONTDALE | Curated Lifestyle Destination</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #262626;
+            --accent-color: #A68A64;
+            --bg-color: #F9F9F9;
+            --bg-alt: #FFFFFF;
+            --text-light: #6B6B6B;
+            --border-color: #E5E5E5;
+            --error: #D9534F;
+            --success: #5CB85C;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease; 
+            
+            --footer-bg: #1e1e1d;
+            --footer-text: #c2c2c2;
+            --footer-heading: #eaeaea;
+            --footer-border: #3a3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            color: var(--primary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        header {
+            background-color: transparent;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: background-color 0.5s ease, backdrop-filter 0.5s ease, border-bottom 0.5s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            color: var(--primary-color);
+            padding: 4px 0;
+            position: relative;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(-50%);
+        }
+
+        .nav-links li a:hover::after, .nav-links li a.active::after {
+            width: 100%;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--primary-color);
+            background-color: transparent;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .page-section {
+            display: none;
+            min-height: 80vh;
+            animation: fadeUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--primary-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-alt);
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 3rem;
+            padding-top: 5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('assets/Sza\ Sos\ Album\ Re\ Pitchfork.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to right, rgba(249,249,249,0.95) 0%, rgba(249,249,249,0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p.tagline {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            color: var(--text-light);
+        }
+
+        .hero-info {
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5% 6rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .card {
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .card-img-wrapper {
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .card-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .event-date {
+            display: block;
+            font-weight: 500;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 5rem;
+            align-items: flex-start;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+
+        .form-container {
+            max-width: 700px;
+            background: var(--bg-alt);
+            padding: 4rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select {
+            width: 100%;
+            padding: 1rem 0;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            background: transparent;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-bottom-color: var(--primary-color);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 300;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        #form-messages {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            display: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .error-msg { background: #FDEDED; color: var(--error); border-left: 3px solid var(--error); }
+        .success-msg { background: #EDF7ED; color: var(--success); border-left: 3px solid var(--success); }
+
+        .site-footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 5rem 5% 2rem;
+            font-family: var(--font-body);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr; 
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-col h3 {
+            font-family: var(--font-heading);
+            color: var(--footer-heading);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--footer-border);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col p, .footer-col a {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--footer-text);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--bg-alt);
+        }
+
+        .footer-address p {
+            display: inline;
+            border-bottom: 1px dotted var(--footer-text);
+            line-height: 2;
+        }
+        
+        .footer-address-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--footer-text);
+            color: var(--footer-text);
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            border-color: var(--bg-alt);
+            color: var(--bg-alt);
+        }
+
+        .social-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .app-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .app-badge-img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+            border: 1px solid var(--footer-border);
+            object-fit: contain;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-bottom a {
+            border-bottom: 1px dotted #888;
+        }
+
+        @media screen and (max-width: 540px) {
+            .nav-container {
+                flex-wrap: wrap;
+                padding: 1.2rem 5%;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: left;
+                padding-top: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li a {
+                display: inline-block; 
+                padding-bottom: 8px;
+            }
+
+            header.menu-open {
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: none;
+            }
+
+            .hero::before {
+                background: linear-gradient(to bottom, rgba(249,249,249,0.9) 0%, rgba(249,249,249,0.6) 100%);
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            
+            .footer-bottom {
+                padding-top: 1rem;
+                border-top: 1px solid var(--footer-border);
+            }
+        }
+    </style>
+</head>
+
+    <script>
+        // Transisi Header saat Scroll (Glassmorphism)
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Logika Navigasi SPA
+        function navigate(pageId) {
+            const pages = document.querySelectorAll('.page-section');
+            for(let i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            
+            document.getElementById(pageId).classList.add('active');
+
+            const links = document.querySelectorAll('.nav-link');
+            for(let i = 0; i < links.length; i++) {
+                links[i].classList.remove('active');
+                if(links[i].getAttribute('data-target') === pageId) {
+                    links[i].classList.add('active');
+                }
+            }
+
+            const navLinks = document.getElementById('nav-links');
+            const header = document.getElementById('main-header');
+            if(navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+                header.classList.remove('menu-open');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Menu Mobile
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const header = document.getElementById('main-header');
+            navLinks.classList.toggle('show');
+            header.classList.toggle('menu-open');
+        }
+
+        // Validasi Formulir Buletin
+        document.getElementById('newsletter-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('emailAddr').value.trim();
+            const phone = document.getElementById('phoneNumber').value.trim();
+            const topic = document.getElementById('interestTopic').value;
+            const frequencyRadios = document.getElementsByName('frequency');
+            
+            let errors = [];
+
+            if (name === '') { errors.push("Full Name is required."); } 
+            else if (name.length < 3) { errors.push("Full Name must be at least 3 characters."); }
+
+            let atSymbolIndex = email.indexOf('@');
+            let dotIndex = email.lastIndexOf('.');
+            if (email === '') { errors.push("Email Address is required."); } 
+            else if (atSymbolIndex < 1 || dotIndex <= atSymbolIndex + 1 || dotIndex === email.length - 1) { errors.push("Please enter a valid Email Address."); }
+
+            let isPhoneNumeric = true;
+            for (let i = 0; i < phone.length; i++) {
+                if (phone[i] < '0' || phone[i] > '9') {
+                    isPhoneNumeric = false; break;
+                }
+            }
+            
+            if (phone === '') { errors.push("Phone Number is required."); } 
+            else if (!isPhoneNumeric) { errors.push("Phone Number can only contain numbers."); } 
+            else if (phone.length < 8 || phone.length > 15) { errors.push("Phone Number must be between 8 and 15 digits."); }
+
+            if (topic === '') { errors.push("Please select your Topic of Interest."); }
+
+            let isFrequencySelected = false;
+            for (let i = 0; i < frequencyRadios.length; i++) {
+                if (frequencyRadios[i].checked) { isFrequencySelected = true; break; }
+            }
+            
+            if (!isFrequencySelected) { errors.push("Please select your preferred Update Frequency."); }
+
+            const msgBox = document.getElementById('form-messages');
+            msgBox.style.display = 'block';
+
+            if (errors.length > 0) {
+                msgBox.className = 'error-msg';
+                msgBox.innerHTML = "<strong>Please correct the following errors:</strong><br><br>" + errors.join("<br>");
+            } else {
+                msgBox.className = 'success-msg';
+                msgBox.innerHTML = "<strong>Success!</strong> Welcome to the FONTDALE newsletter. Your preferences have been saved.";
+                document.getElementById('newsletter-form').reset(); 
+            }
+        });
+    </script>
+</body>
+</html>
